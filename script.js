@@ -403,3 +403,110 @@ document.addEventListener('keydown', (e) => {
 
 // Initial Setup
 updatePlayerPosition();
+// --- Game Configuration ---
+const GAME_WIDTH = 600;
+// ... (rest of configuration remains the same) ...
+
+// --- Game State Variables ---
+let gameState = 'ready'; 
+// ... (rest of state variables remain the same) ...
+
+// --- Touch Input Variables ---
+let touchStartX = 0;
+const SWIPE_THRESHOLD = 50; // Minimum pixels needed to register a swipe
+const SWIPE_MOVE_SPEED = 20; // How much the player moves per swipe
+
+// --- DOM Elements ---
+const gameContainer = document.getElementById('game-container');
+// ... (rest of DOM elements remain the same) ...
+
+// --- Utility Functions ---
+// ... (Utility functions remain the same) ...
+
+// --- Player Movement and Animation ---
+
+/** Updates the player's visual position */
+function updatePlayerPosition() {
+    // Keep player within horizontal bounds
+    playerPositionX = Math.max(0, Math.min(GAME_WIDTH - playerWidth, playerPositionX));
+    playerElement.style.left = playerPositionX + 'px';
+}
+
+// ... (rest of Player and Item functions remain the same) ...
+
+// --- Event Listeners ---
+
+// ... (Overlay and Pause button listeners remain the same) ...
+
+// Handle Keyboard Input for Player Movement (Unchanged)
+document.addEventListener('keydown', (e) => {
+    if (gameState !== 'playing') return;
+    // ... (logic for A, D, Left, Right, S, Down, P keys remains the same) ...
+    
+    // The previous logic for movement is here.
+    let moved = false;
+    // Left Key (ArrowLeft or A)
+    if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') {
+        playerPositionX -= PLAYER_SPEED;
+        moved = true;
+    }
+    // Right Key (ArrowRight or D)
+    else if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
+        playerPositionX += PLAYER_SPEED;
+        moved = true;
+    }
+    // Down Key (ArrowDown or S) -> Center Player
+    else if (e.key === 'ArrowDown' || e.key.toLowerCase() === 's') {
+        playerPositionX = (GAME_WIDTH / 2) - (playerWidth / 2);
+        moved = true;
+    }
+    // P key for Pause
+    else if (e.key.toLowerCase() === 'p') {
+        pauseGame();
+    }
+
+    if (moved) {
+        updatePlayerPosition();
+    }
+});
+
+
+// ------------------------------------------------------------------
+// --- NEW: Mobile Touch/Swipe Input ---
+// ------------------------------------------------------------------
+
+gameScreen.addEventListener('touchstart', (e) => {
+    if (gameState !== 'playing') return;
+    // Record the starting X position of the first touch
+    touchStartX = e.touches[0].clientX;
+    e.preventDefault(); // Prevent scrolling and other default touch behaviors
+}, { passive: false });
+
+gameScreen.addEventListener('touchmove', (e) => {
+    if (gameState !== 'playing') return;
+    // Use touchmove to continuously adjust player position based on finger movement
+    const touchMoveX = e.touches[0].clientX;
+    const deltaX = touchMoveX - touchStartX;
+
+    // Use a multiplier to adjust movement sensitivity
+    const sensitivity = 0.5; 
+    playerPositionX += deltaX * sensitivity; 
+    
+    // Reset touchStartX to the current position to allow for continuous drag/move
+    touchStartX = touchMoveX; 
+
+    updatePlayerPosition();
+    e.preventDefault(); 
+}, { passive: false });
+
+
+gameScreen.addEventListener('touchend', (e) => {
+    // Optional: You could implement a 'flick' or single-swipe logic here 
+    // using the SWIPE_THRESHOLD and SWIPE_MOVE_SPEED if you preferred
+    // discrete jumps over continuous dragging, but continuous 'touchmove'
+    // usually provides a better experience for this type of game.
+});
+
+// Initial Setup
+updatePlayerPosition();
+
