@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Food!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="status-bar">
+            <div id="timer-display">
+                <img src="assets/images/timer.png" alt="Timer Icon">
+                <span id="timer-text">2:00</span>
+            </div>
+            <div id="score-display">
+                <img src="assets/images/coin.png" alt="Coin Icon">
+                <span id="score">0</span>
+            </div>
+            <button id="pause-button">PAUSE</button>
+        </div>
+
+        <div id="game-screen">
+            <div id="player"></div>
+            <div id="floor"></div>
+        </div>
+
+        <div id="overlay">
+            <div id="game-message">
+                <h1>Catch the Food!</h1>
+                <p id="sub-message">Press PLAY to start.</p>
+                <div id="overlay-buttons">
+                    <button id="play-button" data-action="start">
+                        <img src="assets/images/play_button.png" alt="Play Button">
+                    </button>
+                    <button id="tryagain-button" data-action="tryagain" style="display:none;">
+                        <img src="assets/images/tryagain_button.png" alt="Try Again Button">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

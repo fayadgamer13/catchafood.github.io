@@ -1,0 +1,168 @@
+/* Custom Cursor */
+/* Change cursor.png to your actual cursor image */
+body {
+    cursor: url('assets/images/cursor.png'), auto;
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #333;
+}
+
+#game-container {
+    width: 600px; /* Standard game width */
+    height: 800px; /* Standard game height */
+    border: 5px solid #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    background-image: url('assets/images/background.png');
+    background-size: cover;
+    background-color: skyblue; /* Fallback */
+}
+
+/* --- Status Bar --- */
+#status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1.5em;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 10; /* Above all falling items */
+}
+
+#timer-display, #score-display {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#status-bar img {
+    width: 30px;
+    height: 30px;
+}
+
+#pause-button {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* --- Game Screen and Floor --- */
+#game-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#floor {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px; /* Height of the floor image */
+    background-image: url('assets/images/floor.png');
+    background-size: cover;
+    z-index: 5; /* Below player and items, but above background */
+}
+
+/* --- Player --- */
+#player {
+    position: absolute;
+    /* Dimensions based on your player frames */
+    width: 80px; 
+    height: 100px; 
+    bottom: 40px; /* Just above the floor */
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url('assets/images/player.png');
+    background-size: cover;
+    z-index: 7;
+    /* Animation definition for the frames (will be controlled by JS) */
+}
+
+.player-frame {
+    /* Base name of your frame images */
+    background-image: url('assets/images/player_frame1.png');
+}
+
+/* You would define the animation steps here, but it's often easier
+   to switch background images in JavaScript for frame-by-frame control. */
+
+
+/* --- Falling Items (Food, Coin, Bomb) --- */
+.item {
+    position: absolute;
+    top: -50px; /* Start off screen */
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 8;
+}
+
+.food {
+    /* Specific food image will be set by JS (food1.png, food2.png, etc.) */
+}
+
+.coin {
+    background-image: url('assets/images/coin.png');
+}
+
+.bomb {
+    background-image: url('assets/images/bomb.png');
+}
+
+/* --- Overlay/Menu Screens --- */
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 20; /* Highest priority */
+}
+
+#game-message h1 {
+    font-size: 3em;
+    margin-bottom: 0.2em;
+}
+
+#overlay-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+#overlay-buttons img {
+    width: 150px;
+    height: auto;
+    transition: transform 0.1s;
+}
+
+#overlay-buttons img:hover {
+    transform: scale(1.05);
+}
+
+/* Utility Class for hiding the overlay */
+.hidden {
+    display: none !important;
+}
