@@ -54,10 +54,10 @@ const tryAgainButton = document.getElementById('tryagain-button');
 const pauseButton = document.getElementById('pause-button');
 
 // --- Audio Elements (Pre-load sounds) ---
-const audioPop = new Audio('assets/audio/pop.mp3');
-const audioBomb = new Audio('assets/audio/bomb.mp3');
-const audioWinner = new Audio('assets/audio/winner.mp3');
-const audioLost = new Audio('assets/audio/lost.mp3');
+const audioPop = new Audio('pop.mp3');
+const audioBomb = new Audio('bomb.mp3');
+const audioWinner = new Audio('winner.mp3');
+const audioLost = new Audio('lost.mp3');
 
 // --- Utility Functions ---
 
@@ -88,7 +88,7 @@ function animatePlayer() {
     frameCounter++;
     if (frameCounter >= FRAME_SPEED) {
         currentFrameIndex = (currentFrameIndex + 1) % FRAME_IMAGES.length;
-        playerElement.style.backgroundImage = `url(assets/images/${FRAME_IMAGES[currentFrameIndex]})`;
+        playerElement.style.backgroundImage = `url(${FRAME_IMAGES[currentFrameIndex]})`;
         frameCounter = 0;
     }
 }
@@ -129,7 +129,7 @@ function spawnItem() {
 
     const itemElement = document.createElement('div');
     itemElement.classList.add('item', className);
-    itemElement.style.backgroundImage = `url(assets/images/${itemData.image})`;
+    itemElement.style.backgroundImage = `url(${itemData.image})`;
     
     // Random horizontal position, keeping within bounds
     const itemWidth = 50;

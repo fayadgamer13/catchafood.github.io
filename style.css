@@ -1,7 +1,7 @@
 /* Custom Cursor */
 /* Change cursor.png to your actual cursor image */
 body {
-    cursor: url('assets/images/cursor.png'), auto;
+    cursor: url('cursor.png'), auto;
     font-family: sans-serif;
     margin: 0;
     display: flex;
@@ -18,7 +18,7 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
-    background-image: url('assets/images/background.png');
+    background-image: url('background.png');
     background-size: cover;
     background-color: skyblue; /* Fallback */
 }
@@ -72,7 +72,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 50px; /* Height of the floor image */
-    background-image: url('assets/images/floor.png');
+    background-image: url('floor.png');
     background-size: cover;
     z-index: 5; /* Below player and items, but above background */
 }
@@ -86,7 +86,7 @@ body {
     bottom: 40px; /* Just above the floor */
     left: 50%;
     transform: translateX(-50%);
-    background-image: url('assets/images/player.png');
+    background-image: url('player.png');
     background-size: cover;
     z-index: 7;
     /* Animation definition for the frames (will be controlled by JS) */
@@ -94,7 +94,7 @@ body {
 
 .player-frame {
     /* Base name of your frame images */
-    background-image: url('assets/images/player_frame1.png');
+    background-image: url('player_frame1.png');
 }
 
 /* You would define the animation steps here, but it's often easier
@@ -117,11 +117,11 @@ body {
 }
 
 .coin {
-    background-image: url('assets/images/coin.png');
+    background-image: url('coin.png');
 }
 
 .bomb {
-    background-image: url('assets/images/bomb.png');
+    background-image: url('bomb.png');
 }
 
 /* --- Overlay/Menu Screens --- */
